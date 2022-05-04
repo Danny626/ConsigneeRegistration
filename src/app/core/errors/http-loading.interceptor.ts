@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { LoadingDialogService } from 'app/_service/services';
+import { LoadingDialogService } from 'app/service/services';
 
 @Injectable()
 export class HttpLoadingInterceptor implements HttpInterceptor {
