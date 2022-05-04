@@ -1,51 +1,36 @@
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ConsigneeProfileComponent } from 'app/pages/consignee-profile/consignee-profile.component';
 
-import { DashboardComponent } from '../../dashboard/dashboard.component';
-import { UserProfileComponent } from '../../user-profile/user-profile.component';
+import { AdminLayoutComponent } from './admin-layout.component';
 
-export const AdminLayoutRoutes: Routes = [
-    // {
-    //   path: '',
-    //   children: [ {
-    //     path: 'dashboard',
-    //     component: DashboardComponent
-    // }]}, {
-    // path: '',
-    // children: [ {
-    //   path: 'userprofile',
-    //   component: UserProfileComponent
-    // }]
-    // }, {
-    //   path: '',
-    //   children: [ {
-    //     path: 'icons',
-    //     component: IconsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'notifications',
-    //         component: NotificationsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'maps',
-    //         component: MapsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'typography',
-    //         component: TypographyComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'upgrade',
-    //         component: UpgradeComponent
-    //     }]
-    // }
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent }
-];
+const routes: Routes = [{
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+        { 
+            path: 'consigneeProfile',        
+            component: ConsigneeProfileComponent, 
+            // canActivate: [GuardService] 
+        },
+        {
+            path: '',
+            redirectTo: 'consigneeProfile',
+            pathMatch: 'full',
+        },
+        /*{ 
+        path: '**',
+        component: NotFoundComponent,
+        }, */
+    ]
+}];
+
+@NgModule({
+    imports: [
+        RouterModule.forChild(routes)
+    ],
+    exports: [
+        RouterModule
+    ],
+})
+export class AdminLayoutRoutes { }

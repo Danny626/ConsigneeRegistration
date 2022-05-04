@@ -81,8 +81,8 @@
               "outputHashing": "all",
               "fileReplacements": [
                 {
-                    "replace": "src/environments/environment.ts",
-                    "with": "src/environments/environment.development.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
                 }
               ]
             }
@@ -177,7 +177,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "scss"
+      "style": "css"
     },
     "@schematics/angular:directive": {
       "prefix": "app"
