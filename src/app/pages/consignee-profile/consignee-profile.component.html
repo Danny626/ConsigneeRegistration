@@ -22,7 +22,7 @@
                       formControlName="documentType"
                       required
                     >
-                      <mat-option>--</mat-option>
+                      <!-- <mat-option>--</mat-option> -->
                       <mat-option
                         *ngFor="let docType of docTypes"
                         [value]="docType"
@@ -32,10 +32,7 @@
                     </mat-select>
                     <mat-error
                       class="error-message"
-                      *ngIf="
-                        formConsignee.controls.documentType.hasError('required')
-                      "
-                    >
+                      *ngIf="formConsignee.controls.documentType.hasError('required')">
                       Por favor seleccione el Tipo de Documento
                     </mat-error>
                   </mat-form-field>

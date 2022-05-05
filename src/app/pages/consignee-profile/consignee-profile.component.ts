@@ -26,6 +26,7 @@ export class ConsigneeProfileComponent implements OnInit {
   ngOnInit(): void {
     this.listCountries();
     this.listDocumentTypes();
+    this.formConsigneeInitializer();
   }
 
   formConsigneeInitializer() {

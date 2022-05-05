@@ -16,10 +16,10 @@ export class CountryService {
   constructor(private http: HttpClient) { }
 
   listCountries() {
-    const access_token = JSON.parse(sessionStorage.getItem(TOKEN_NAME)).access_token;
+    // const access_token = JSON.parse(sessionStorage.getItem(TOKEN_NAME)).access_token;
 
     return this.http.get<Country[]>(`${this.url}`, {
-      headers: new HttpHeaders().set('Authorization', `bearer ${access_token}`)
+      headers: new HttpHeaders()
         .set('Content-Type', 'application/json'),
     });
   }

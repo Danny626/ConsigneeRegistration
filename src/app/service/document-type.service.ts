@@ -9,17 +9,17 @@ import { Subject } from 'rxjs';
 })
 export class DocumentTypeService {
 
-  url: string = `${HOST}/country`;
-  countryChange = new Subject<DocumentType[]>();
+  url: string = `${HOST}/documentType`;
+  docTypeChange = new Subject<DocumentType[]>();
   message = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
   listDocumentTypes() {
-    const access_token = JSON.parse(sessionStorage.getItem(TOKEN_NAME)).access_token;
+    // const access_token = JSON.parse(sessionStorage.getItem(TOKEN_NAME)).access_token;
 
     return this.http.get<DocumentType[]>(`${this.url}`, {
-      headers: new HttpHeaders().set('Authorization', `bearer ${access_token}`)
+      headers: new HttpHeaders()
         .set('Content-Type', 'application/json'),
     });
   }
