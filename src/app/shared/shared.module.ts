@@ -7,10 +7,8 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { InfoDialogComponent } from './info-dialog/info-dialog.component';
-import { DragAndDropDirective } from './drag-and-drop-directive/drag-and-drop.directive';
-import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { DialogComponent } from './dialog/dialog.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
@@ -27,36 +25,48 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar'; 
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
-const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent, FileUploaderComponent, DragAndDropDirective, DialogComponent];
+const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent, DialogComponent, UploadFileComponent];
+
+const materialModules = [
+  MatProgressSpinnerModule,
+  MatButtonModule,
+  MatIconModule,
+  MatDialogModule,
+  MatTabsModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatRippleModule,
+  MatSnackBarModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatMenuModule,
+  MatExpansionModule,
+  MatProgressBarModule,
+  MatTooltipModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSidenavModule,
+  MatToolbarModule
+];
 
 @NgModule({
   declarations: [...sharedComponents, InfoDialogComponent],
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatTabsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatRippleModule,
-    MatSnackBarModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatMenuModule,
-    MatExpansionModule,
-    MatProgressBarModule,
-    MatTooltipModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSidenavModule
+    ...materialModules,
   ],
-  exports: [...sharedComponents],
+  exports: [...sharedComponents, ...materialModules],
   /* providers: [ErrorDialogService, LoadingDialogService], */
   entryComponents: [...sharedComponents],
 })

@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ConsigneeUpload } from 'app/dto/consignee-upload';
 import { Consignee } from 'app/model/consignee';
-import { HOST, TOKEN_NAME } from 'app/shared/var.constant';
+import { HOST } from 'app/shared/var.constant';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -10,18 +9,33 @@ import { Subject } from 'rxjs';
 })
 export class ConsigneeService {
 
-  url: string = `${HOST}/country`;
+  url: string = `${HOST}/consignee`;
   countryChange = new Subject<Consignee[]>();
   message = new Subject<string>();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  registry(consigneeUpload: ConsigneeUpload) {
-    const access_token = JSON.parse(sessionStorage.getItem(TOKEN_NAME)).access_token;
+  registry(consignee: Consignee, imgFile: File) {
+    // const access_token = JSON.parse(sessionStorage.getItem(TOKEN_NAME)).access_token;
 
-    return this.http.post(`${this.url}/registry`, consigneeUpload, {
-      headers: new HttpHeaders().set('Authorization', `bearer ${access_token}`)
-        .set('Content-Type', 'application/json'),
+    let formParams = new FormData();
+    formParams.append('file', imgFile);
+    formParams.append('consignee', new Blob([JSON
+      .stringify(consignee)], {
+      type: 'application/json'
+    }));
+    /* formParams.append('consignee', new Blob([JSON
+      .stringify(consignee)], {
+      type: 'application/json'
+    })); */
+
+    return this.http.post(`${this.url}/registry`, formParams, {
+      responseType: 'json',
+      headers: new HttpHeaders()
+        //.set('Authorization', `bearer ${access_token}`)
+        /* .set('Content-Type', undefined), */
     });
   }
 }

@@ -69,31 +69,79 @@
                   </mat-form-field>
                 </div>
               </div>
-              
+
               <div class="row">
-                <div class="col-md-12">
-                  <label>About Me</label>
-                  <mat-form-field class="example-full-width">
-                    <textarea
-                      matInput
-                      placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                    ></textarea>
+                <div class="col-md-4">
+                  <mat-form-field>
+                    <mat-select
+                      placeholder="País"
+                      [(value)]="countrySelec"
+                      formControlName="country"
+                      required
+                    >
+                      <mat-option
+                        *ngFor="let country of countries"
+                        [value]="country"
+                      >
+                        {{ country.name }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error
+                      class="error-message"
+                      *ngIf="formConsignee.controls.country.hasError('required')">
+                      Por favor seleccione el País
+                    </mat-error>
                   </mat-form-field>
-                  <!-- <div class="form-group">
-  
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                            <textarea class="form-control" rows="5"></textarea>
-                                        </div>
-                                    </div> -->
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                      <mat-label>Teléfono</mat-label>
+                      <input matInput type="text" formControlName="phoneNumber">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                      <mat-label>Celular</mat-label>
+                      <input matInput type="text" formControlName="cellNumber">
+                      <mat-error *ngIf="formConsignee.controls.cellNumber.hasError('required')">Por favor ingrese un Númmero de Celular</mat-error>
+                  </mat-form-field>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <mat-form-field class="example-full-width">
+                      <mat-label>Correo Electrónico</mat-label>
+                      <input matInput type="text" formControlName="email">
+                      <mat-error *ngIf="formConsignee.controls.email.hasError('required')">Por favor ingrese un Email</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-7">
+                  <mat-form-field class="example-full-width">
+                      <mat-label>Dirección</mat-label>
+                      <input matInput type="text" formControlName="address">
+                      <mat-error *ngIf="formConsignee.controls.address.hasError('required')">Por favor ingrese una Dirección</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label style="margin-bottom: 0px !important; margin-top: 0.5rem;">Documento Digitalizado (formatos aceptados: pdf, jpeg, jpg, png)</label>
+                  <app-upload-file (loadFileEvent)="loadFile($event)"></app-upload-file>
+                </div>
+              </div>
+              
               <button
                 mat-raised-button
                 type="submit"
                 class="btn btn-danger pull-right"
+                [disabled]="!formConsignee.valid"
               >
-                Update Profile
+                Guardar Datos
               </button>
               <div class="clearfix"></div>
             </form>

@@ -2,7 +2,7 @@ import { ErrorHandler, Injectable, NgZone } from '@angular/core';
 import {
   HttpErrorResponse
 } from '@angular/common/http';
-import { ErrorDialogService } from 'app/service/services';
+import { InfoDialogService } from 'app/service/services';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
@@ -31,7 +31,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   } */
 
   constructor(
-    private errorDialogService: ErrorDialogService,
+    private infoDialogService: InfoDialogService,
     private zone: NgZone
   ) {}
 
@@ -88,8 +88,9 @@ export class GlobalErrorHandler implements ErrorHandler {
 
   sendError(error: string) {
     this.zone.run(() =>
-      this.errorDialogService.openDialog(
-        error || 'Undefined client error.'
+      this.infoDialogService.openDialog(
+        error || 'Undefined client error.',
+        'error'
       )
     ); 
   }

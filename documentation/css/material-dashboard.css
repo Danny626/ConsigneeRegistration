@@ -13119,7 +13119,7 @@ h2.title {
   -webkit-transition: 0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1);
   transition: 0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .main-panel > .content {
-    margin-top: 70px;
+    margin-top: 40px;
     padding: 30px 15px;
     min-height: calc(100vh - 123px); }
   .main-panel > .footer {
@@ -13761,7 +13761,7 @@ label {
   z-index: 2;
   width: 100%;
   height: calc(100vh - 70px);
-  margin-top: 70px; }
+  margin-top: 40px; }
 
 .tim-typo {
   padding-left: 25%;
